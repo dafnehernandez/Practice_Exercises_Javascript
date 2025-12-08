@@ -2,8 +2,9 @@
 let arr = ["This", "is", "a", "sentence."];
 
 function printOutString() {
-  // your code here
+  console.log(arr.join(" "));
 }
 
-printOutString();
+//printOutString()
 //Complete the function to print out the string: This is a sentence.
+export {printOutString};
