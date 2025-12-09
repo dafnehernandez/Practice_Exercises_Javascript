@@ -43,4 +43,3 @@ export function transformDoubleValue() {
 }
 
 //Note: Create an if for select if you just watch an example o put your own array
-
