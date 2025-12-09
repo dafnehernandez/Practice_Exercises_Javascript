@@ -55,7 +55,7 @@ export function courseMatch() {
 
       case 1:
       case 2:
-        // pedir cursos
+        // ask courses
         let input1 = prompt("Enter first array (words separated by spaces):");
         let input2 = prompt("Enter second array (words separated by spaces):");
 
