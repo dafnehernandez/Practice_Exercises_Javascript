@@ -7,17 +7,44 @@ import { bubbleSortInteractive } from "./modules/exerciseBubbleSort.js";
 
 /**
  * Cambia el fondo según el ejercicio.
- * - Por defecto: lluvia tranquila (bg-rain)
- * - Ejercicio 6: burbujas (bg-bubbles)
+ * - Por defecto: estrellas con container gris claro
+ * - Ejercicio 6: burbujas con container blanco
  */
 function setBackgroundForExercise(exerciseNumber) {
     const body = document.body;
-    body.classList.remove("bg-rain", "bg-bubbles");
-
+    const appContainer = document.querySelector('.app-container');
+    const bubblesContainer = document.getElementById('bubbles-container');
+    const nightContainer = document.querySelector('.night');
+    
+    // Remover todas las clases de fondo
+    body.classList.remove("bg-bubbles", "bg-stars");
+    appContainer.classList.remove("white-bg");
+    
+    // Ocultar/mostrar contenedores de fondo
+    if (bubblesContainer) {
+        bubblesContainer.style.display = 'none';
+    }
+    if (nightContainer) {
+        nightContainer.style.display = 'block';
+    }
+    
+    // Configurar para ejercicio 6
     if (exerciseNumber === 6) {
         body.classList.add("bg-bubbles");
+        appContainer.classList.add("white-bg");
+        
+        if (bubblesContainer) {
+            bubblesContainer.style.display = 'block';
+        }
+        if (nightContainer) {
+            nightContainer.style.display = 'none';
+        }
     } else {
-        body.classList.add("bg-rain");
+        // Para otros ejercicios: fondo normal
+        body.classList.add("bg-stars");
+        if (nightContainer) {
+            nightContainer.style.display = 'block';
+        }
     }
 }
 
@@ -58,10 +85,12 @@ function initMenu() {
     buttons.forEach((btn) => {
         btn.addEventListener("click", () => {
             const exerciseNumber = Number(btn.dataset.exercise);
-
-            // Cambiar fondo
+            
+            console.log("Botón clickeado:", exerciseNumber); // Para debug
+            
+            // Cambiar fondo primero
             setBackgroundForExercise(exerciseNumber);
-
+            
             // Ejecutar ejercicio
             runExercise(exerciseNumber);
         });
@@ -70,7 +99,8 @@ function initMenu() {
 
 // Esperar a que el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM cargado"); // Para debug
     initMenu();
-    // Fondo inicial = lluvia
+    // Fondo inicial = estrellas
     setBackgroundForExercise(0);
 });

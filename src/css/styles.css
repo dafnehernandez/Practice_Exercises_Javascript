@@ -7,7 +7,7 @@
     padding: 0;
 }
 
-/* Body único - NO repetir 
+/* Body único - NO repetir */ 
 body {
     min-height: 100vh;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -18,51 +18,134 @@ body {
     overflow: hidden;
     background: radial-gradient(ellipse at bottom, #0D1E31, #111);
 }
-*/
 
-/* Fondo general oscuro para que destaquen las estrellas */
-body{
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(ellipse at bottom, #0D1E31, #111);
-  overflow: hidden;
-}
+/* Contenedor principal */
 
-/* Contenedor principal semi-transparente centrado */
 .app-container {
-    background: rgba(15, 23, 42, 0.85);
+    background: rgba(122, 162, 255, 0.85);
     padding: 2.5rem 3rem;
     border-radius: 18px;
     max-width: 900px;
     width: 90%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
     z-index: 2; /* Por encima del fondo */
     position: relative;
+    border: 1px solid rgba(255,255,255,0.15);
 }
+
 
 .app-header {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .app-header h1 {
-    font-size: 1.8rem;
-    margin-bottom: 0.4rem;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #ffff;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .app-header p {
-    font-size: 0.95rem;
-    color: #cbd5f5;
+    font-size: 1.1rem;
+    color: rgba(0, 5, 5, 1);
+    font-weight: 500;
 }
 
 .app-main {
     display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+/* MENÚ HORIZONTAL */
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 botones, 6 columnas */
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.menu-btn {
+    padding: 1rem 1.8rem;
+    border-radius: 16px;
+    border: 2px solid rgba(74, 85, 104, 0.2);
+    background: linear-gradient(145deg, #ffffff, #f1f5f9);
+    color: #2d3748;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 140px;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(145deg, rgba(66, 153, 225, 0.1), rgba(56, 178, 172, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 12px 24px rgba(0, 0, 0, 0.15),
+        0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(145deg, #ffffff, #e2e8f0);
+    border-color: rgba(66, 153, 225, 0.4);
+    color: #2b6cb0;
+}
+
+.menu-btn:hover::before {
+    opacity: 1;
+}
+
+.menu-btn:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Texto informativo - MEJORADO */
+.info {
+    width: 100%;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #4a5568;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.info code {
+    background: linear-gradient(145deg, #edf2f7, #e2e8f0);
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #2d3748;
+    border: 1px solid #cbd5e0;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 /* Centrar contenido en pantalla */
@@ -74,59 +157,51 @@ body{
     justify-content: center;
     min-height: 100vh;
     width: 100%;
+    padding: 1rem;
 }
 
-/* Menú botones */
-.menu {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    min-width: 220px;
+/* Responsive para el menú, ajustar columnas según el tamaño de pantalla*/
+@media (max-width: 1200px) {
+    .menu {
+        grid-template-columns: repeat(3, 1fr); /* 2 filas de 3 botones */
+    }
 }
 
-.menu-btn {
-    padding: 0.7rem 1rem;
-    border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.7);
-    background: rgba(15, 23, 42, 0.9);
-    color: #e5e7eb;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition:
-        transform 0.15s ease-out,
-        box-shadow 0.15s ease-out,
-        background 0.15s ease-out,
-        border-color 0.15s ease-out;
+@media (max-width: 768px) {
+    .menu {
+        grid-template-columns: repeat(2, 1fr); /* 3 filas de 2 botones */
+    }
+    
+    .app-container {
+        padding: 1.5rem;
+        width: 95%;
+    }
+    
+    .app-header h1 {
+        font-size: 1.8rem;
+    }
 }
 
-.menu-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.7);
-    background: rgba(30, 64, 175, 0.9);
-    border-color: rgba(191, 219, 254, 0.9);
+@media (max-width: 480px) {
+    .menu {
+        grid-template-columns: 1fr; /* 6 filas de 1 botón */
+    }
+    
+    .app-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .menu-btn {
+        min-width: 100%;
+        padding: 0.9rem 1.5rem;
+    }
+    
+    .info {
+        padding: 1.5rem;
+        font-size: 0.95rem;
+    }
 }
 
-.menu-btn:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
-
-/* Texto informativo */
-.info {
-    flex: 1;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #e5e7eb;
-}
-
-.info code {
-    background: rgba(15, 23, 42, 0.9);
-    padding: 0.1rem 0.3rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-}
 
 /* =========================
    FONDOS ANIMADOS
@@ -392,60 +467,260 @@ body{
 /* =========================
    FONDO DE BURBUJAS (para ejercicio 6)
    ========================= */
+
+.bg-bubbles {
+    position: relative;
+    overflow: hidden;
+}
+
 .bg-bubbles::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 0;
-    background-color: #020617;
-    background-image:
-        radial-gradient(circle at 20% 80%, rgba(56, 189, 248, 0.5) 0 40px, transparent 41px),
-        radial-gradient(circle at 80% 20%, rgba(129, 140, 248, 0.5) 0 35px, transparent 36px),
-        radial-gradient(circle at 60% 90%, rgba(52, 211, 153, 0.55) 0 30px, transparent 31px),
-        radial-gradient(circle at 10% 20%, rgba(244, 244, 245, 0.35) 0 25px, transparent 26px);
-    background-repeat: no-repeat;
-    animation: bubbles-float 14s ease-in-out infinite alternate;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    opacity: 0.9;
 }
 
-@keyframes bubbles-float {
+/* Contenedor de burbujas */
+.bubbles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Burbujas individuales */
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    animation: bubble-rise 15s infinite ease-in;
+    box-shadow: 
+        inset 0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Efecto de brillo interno en las burbujas */
+.bubble::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 30%;
+    height: 30%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(2px);
+}
+
+/* Animación de burbujas subiendo */
+@keyframes bubble-rise {
     0% {
-        background-position:
-            20% 90%,
-            80% 10%,
-            60% 100%,
-            10% 25%;
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
     }
-    50% {
-        background-position:
-            18% 70%,
-            82% 30%,
-            58% 80%,
-            12% 15%;
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.6;
     }
     100% {
-        background-position:
-            20% 60%,
-            78% 40%,
-            62% 70%,
-            8% 8%;
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Variaciones de tamaño y posición de burbujas */
+.bubble:nth-child(1) {
+    left: 10%;
+    width: 40px;
+    height: 40px;
+    animation-duration: 18s;
+    animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+    left: 20%;
+    width: 60px;
+    height: 60px;
+    animation-duration: 22s;
+    animation-delay: 1s;
+}
+
+.bubble:nth-child(3) {
+    left: 30%;
+    width: 35px;
+    height: 35px;
+    animation-duration: 16s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(4) {
+    left: 40%;
+    width: 50px;
+    height: 50px;
+    animation-duration: 20s;
+    animation-delay: 3s;
+}
+
+.bubble:nth-child(5) {
+    left: 50%;
+    width: 45px;
+    height: 45px;
+    animation-duration: 19s;
+    animation-delay: 4s;
+}
+
+.bubble:nth-child(6) {
+    left: 60%;
+    width: 55px;
+    height: 55px;
+    animation-duration: 21s;
+    animation-delay: 5s;
+}
+
+.bubble:nth-child(7) {
+    left: 70%;
+    width: 30px;
+    height: 30px;
+    animation-duration: 17s;
+    animation-delay: 6s;
+}
+
+.bubble:nth-child(8) {
+    left: 80%;
+    width: 65px;
+    height: 65px;
+    animation-duration: 24s;
+    animation-delay: 7s;
+}
+
+.bubble:nth-child(9) {
+    left: 90%;
+    width: 40px;
+    height: 40px;
+    animation-duration: 18s;
+    animation-delay: 8s;
+}
+
+.bubble:nth-child(10) {
+    left: 15%;
+    width: 70px;
+    height: 70px;
+    animation-duration: 25s;
+    animation-delay: 9s;
+}
+
+/* Movimiento lateral adicional para algunas burbujas */
+.bubble:nth-child(odd) {
+    animation-name: bubble-rise, bubble-sway;
+    animation-timing-function: ease-in, ease-in-out;
+}
+
+@keyframes bubble-sway {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(30px);
     }
 }
 
 /* Responsive */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .app-container {
         padding: 1.5rem;
+        max-width: 95%;
     }
 
     .app-header h1 {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
     }
-    
-    .app-main {
-        flex-direction: column;
-    }
-    
+
     .menu {
-        min-width: 100%;
+        flex-direction: column;
+        align-items: center;
     }
+
+    .menu-btn {
+        min-width: 90%;
+        margin-bottom: 0.5rem;
+    }
+
+    .info {
+        padding: 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 1rem;
+    }
+
+    .app-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .menu-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* =========================
+   CONTAINER BLANCO PARA EJERCICIO 6
+   ========================= */
+.app-container.white-bg {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border: 2px solid rgba(66, 153, 225, 0.3);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+/* Texto más oscuro para mejor contraste en fondo blanco */
+.app-container.white-bg .app-header h1 {
+    color: #2d3748;
+    text-shadow: none;
+}
+
+.app-container.white-bg .app-header p {
+    color: #4a5568;
+}
+
+.app-container.white-bg .info {
+    background: rgba(248, 250, 252, 0.9);
+    color: #2d3748;
+    border: 1px solid #e2e8f0;
+}
+
+.app-container.white-bg .info code {
+    background: linear-gradient(145deg, #e2e8f0, #cbd5e0);
+    color: #2d3748;
+}
+
+/* Botones con mejor contraste en fondo blanco */
+.app-container.white-bg .menu-btn {
+    background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+    color: #2d3748;
+    border: 2px solid rgba(66, 153, 225, 0.4);
+    box-shadow: 
+        0 6px 15px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.app-container.white-bg .menu-btn:hover {
+    background: linear-gradient(145deg, #ffffff, #e2e8f0);
+    border-color: rgba(66, 153, 225, 0.6);
+    color: #2b6cb0;
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.1);
 }
