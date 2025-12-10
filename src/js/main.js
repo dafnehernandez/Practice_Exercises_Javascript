@@ -5,6 +5,24 @@ import { courseMatch } from "./modules/exercise4.js";
 import { listingPeople } from "./modules/exercise5.js";
 import { bubbleSortInteractive } from "./modules/exerciseBubbleSort.js";
 
+
+/**
+ * Muestra el resultado en la página
+ */
+function showResult(message) {
+    const resultOutput = document.getElementById('result-output');
+    if (resultOutput) {
+        resultOutput.textContent = message;
+        // Opcional: agregar estilos para el resultado
+        resultOutput.style.fontWeight = '600';
+        resultOutput.style.color = '#2b6cb0';
+    }
+    
+    // También mostrar en consola para debug
+    console.log("Resultado:", message);
+}
+
+
 /**
  * Cambia el fondo según el ejercicio.
  * - Por defecto: estrellas con container gris claro
@@ -49,32 +67,44 @@ function setBackgroundForExercise(exerciseNumber) {
 }
 
 /**
- * Ejecuta el ejercicio correspondiente.
+ * Ejecuta el ejercicio correspondiente y muestra el resultado.
  */
 function runExercise(exerciseNumber) {
+    // Limpiar resultado anterior
+    showResult("");
+    
+    let result;
+    
     switch (exerciseNumber) {
         case 1:
-            printOutString();
+            result = printOutString();
             break;
         case 2:
-            transformDoubleValue();
+            result = transformDoubleValue();
             break;
         case 3:
-            sumAndProduct();
+            result = sumAndProduct();
             break;
         case 4:
-            courseMatch();
+            result = courseMatch();
             break;
         case 5:
-            listingPeople();
+            result = listingPeople();
             break;
         case 6:
-            bubbleSortInteractive();
+            result = bubbleSortInteractive();
             break;
         default:
+            result = "Ejercicio no válido";
             console.warn("Ejercicio no válido:", exerciseNumber);
     }
+    
+    // Mostrar el resultado
+    if (result !== undefined) {
+        showResult(result);
+    }
 }
+
 
 /**
  * Inicializa el menú: añade listeners a los botones.
@@ -104,3 +134,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fondo inicial = estrellas
     setBackgroundForExercise(0);
 });
+

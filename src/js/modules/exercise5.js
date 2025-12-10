@@ -13,32 +13,45 @@ let people = ["Maria", "Dani", "Luis", "Juan", "Camila"];
 
 At the end of the exercise, there should be 4 people in the array.
  */
-function listingPeople () {
-  let people = ["Maria", "Dani", "Luis", "Juan", "Camila"];
 
-  console.log(people); //1. Print out all of people
+export function listingPeople() {
+    let result = "";
+    let people = ["Maria", "Dani", "Luis", "Juan", "Camila"];
+    
+    console.log(people);                      //1. Print out all of people
+    result += "1. Initial array: " + JSON.stringify(people) + "\n\n";
+    
+    people.splice(people.indexOf("Dani"), 1); // 2. Remove Dani
+    result += "2. After removing Dani: " + JSON.stringify(people) + "\n\n";
+    
+    people.splice(people.indexOf("Juan"), 1); // 3. Remove Juan
+    result += "3. After removing Juan: " + JSON.stringify(people) + "\n\n";
+    
+    let indexLuis = people.indexOf("Luis");   // 4. Move Luis to front
+    let luis = people.splice(indexLuis, 1)[0];
+    people.unshift(luis);
+    result += "4. After moving Luis to front: " + JSON.stringify(people) + "\n\n";
+   
+    people.push("Dafne");                     // 5. Add my name
+    result += "5. After adding my name: " + JSON.stringify(people) + "\n\n";
 
-  people.splice(people.indexOf("Dani"), 1); // 2. Remove Dani
-
-  people.splice(people.indexOf("Juan"), 1); // 3. Remove Juan
-
-  let indexLuis = people.indexOf("Luis"); // 4. Move Luis to the beginning of the array
-  let luis = people.splice(indexLuis, 1)[0]; 
-  people.unshift(luis);
-
-  people.push("Dafne"); //5. Add my name at the end
-
-  // 6. iterate through this array and after console.log Maria
-  for (let person of people) {
-      console.log(person);
-      if (person === "Maria"){
-        break;
-      } 
-  }
-
-  console.log("Index of Maria:", people.indexOf("Maria")); //7. Obtain index of Maria
-
-  console.log("Final array:", people) //Final result
+    let loopResult = "Loop results: ";        // 6. Iterate and stop at Maria
+    for (let person of people) {
+        loopResult += person + " ";
+        if (person === "Maria") {
+            loopResult += "(stopped)";
+            break;
+        }
+    }
+    result += "6. " + loopResult + "\n\n";
+    
+    // 7. Index of Maria
+    console.log("Index of Maria:", people.indexOf("Maria")); 
+    result += "7. Index of Maria: " + people.indexOf("Maria") + "\n\n";
+    
+    // Final array
+    console.log("Final array:", people);
+    result += "Final array: " + JSON.stringify(people);
+    
+    return result;
 }
-
-export {listingPeople}
