@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> JavaScript Exercises - Arrays and Loops</title>
+    <title>JavaScript Exercises - Arrays and Loops</title>
+    <link rel="stylesheet" href="./src/css/styles.css">
 </head>
-<body>
-<script type="module" src="./src/js/main.js"></script>
+<body class="bg-stars">
+
+    <!-- Fondo de estrellas cayendo -->
+  <div class="night">
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+</div>
+
+    <!-- CONTENEDOR CENTRADO -->
+    <div class="content-center">
+
+        <div class="app-container">
+            <header class="app-header">
+                <h1>JavaScript Exercises</h1>
+                <p>Selecciona un ejercicio para ejecutarlo.</p>
+            </header>
+
+            <main class="app-main">
+                <section class="menu">
+                    <button class="menu-btn" data-exercise="1">Ejercicio 1</button>
+                    <button class="menu-btn" data-exercise="2">Ejercicio 2</button>
+                    <button class="menu-btn" data-exercise="3">Ejercicio 3</button>
+                    <button class="menu-btn" data-exercise="4">Ejercicio 4</button>
+                    <button class="menu-btn" data-exercise="5">Ejercicio 5</button>
+                    <button class="menu-btn" data-exercise="6">Ejercicio 6</button>
+                </section>
+
+                <section class="info">
+                    <p>
+                        Los ejercicios se ejecutan con <code>prompt()</code>.
+                    </p>
+                    <p>Esto solo es un párrafo.</p>
+                </section>
+            </main>
+        </div>
+
+    </div>
+
+    <script type="module" src="./src/js/main.js"></script>
 </body>
+
 </html>
